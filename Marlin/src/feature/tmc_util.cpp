@@ -1210,6 +1210,22 @@
   }
   void tmc_disable_stallguard(TMC2660Stepper, const bool) {};
 
+
+  bool tmc_enable_stallguard(TMC2240Stepper &st) {
+    const bool stealthchop_was_enabled = st.en_pwm_mode();
+
+    st.TCOOLTHRS(0xFFFFF);
+    st.en_pwm_mode(false);
+    st.diag0_stall(true);
+
+    return stealthchop_was_enabled;
+  }
+  void tmc_disable_stallguard(TMC2240Stepper &st, const bool restore_stealth) {
+    st.TCOOLTHRS(0);
+    st.en_pwm_mode(restore_stealth);
+    st.diag0_stall(false);
+  }
+
 #endif // USE_SENSORLESS
 
 template<typename TMC>

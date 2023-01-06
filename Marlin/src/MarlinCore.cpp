@@ -1667,6 +1667,13 @@ void loop() {
   do {
     idle();
 
+    // if (queue.ring_buffer.empty()){
+    //   gcode.process_subcommands_now("G92 X0 Y0 Z0 E0");//定义XYZ的位置
+    //   gcode.process_subcommands_now("G0 X200 Y200 Z200 E200 F18000");//X代表哪个轴自转，X后面那个数字代表行程
+    //   //F代表1分钟的转速，12000就是200mm/s，如果速度太快，需要修改相对应的速度，加速度，配置文件中，FEEDRATE，ACCELERATION
+    //   gcode.process_subcommands_now("G0 X0 Y0 Z0 E0 F18000");
+    // }
+
     #if ENABLED(SDSUPPORT)
       if (card.flag.abort_sd_printing) abortSDPrinting();
       if (marlin_state == MF_SD_COMPLETE) finishSDPrinting();

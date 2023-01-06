@@ -46,7 +46,12 @@ enum StealthIndex : uint8_t {
 //   AI = Axis Enum Index
 // SWHW = SW/SH UART selection
 #if ENABLED(TMC_USE_SW_SPI)
-  #define __TMC_SPI_DEFINE(IC, ST, L, AI) TMCMarlin<IC##Stepper, L, AI> stepper##ST(ST##_CS_PIN, float(ST##_RSENSE), TMC_SW_MOSI, TMC_SW_MISO, TMC_SW_SCK, ST##_CHAIN_POS)
+  //#define __TMC_SPI_DEFINE(IC, ST, L, AI) TMCMarlin<IC##Stepper, L, AI> stepper##ST(ST##_CS_PIN, float(ST##_RSENSE), TMC_SW_MOSI, TMC_SW_MISO, TMC_SW_SCK, ST##_CHAIN_POS)
+  #if HAS_DRIVER(TMC2240)
+    #define __TMC_SPI_DEFINE(IC, ST, L, AI) TMCMarlin<IC##Stepper, L, AI> stepper##ST(ST##_CS_PIN, TMC_SW_MOSI, TMC_SW_MISO, TMC_SW_SCK, ST##_CHAIN_POS)
+  #else
+    #define __TMC_SPI_DEFINE(IC, ST, L, AI) TMCMarlin<IC##Stepper, L, AI> stepper##ST(ST##_CS_PIN, float(ST##_RSENSE), TMC_SW_MOSI, TMC_SW_MISO, TMC_SW_SCK, ST##_CHAIN_POS)
+  #endif
 #else
   #define __TMC_SPI_DEFINE(IC, ST, L, AI) TMCMarlin<IC##Stepper, L, AI> stepper##ST(ST##_CS_PIN, float(ST##_RSENSE), ST##_CHAIN_POS)
 #endif
@@ -56,7 +61,13 @@ enum StealthIndex : uint8_t {
 #else
   #define TMC_UART_HW_DEFINE(IC, ST, L, AI) TMCMarlin<IC##Stepper, L, AI> stepper##ST(&ST##_HARDWARE_SERIAL, float(ST##_RSENSE), ST##_SLAVE_ADDRESS)
 #endif
+//#define TMC_UART_SW_DEFINE(IC, ST, L, AI) TMCMarlin<IC##Stepper, L, AI> stepper##ST(ST##_SERIAL_RX_PIN, ST##_SERIAL_TX_PIN, float(ST##_RSENSE), ST##_SLAVE_ADDRESS)
+
+#if HAS_DRIVER(TMC2240)
+#define TMC_UART_SW_DEFINE(IC, ST, L, AI) TMCMarlin<IC##Stepper, L, AI> stepper##ST(ST##_SERIAL_RX_PIN, ST##_SERIAL_TX_PIN,  ST##_SLAVE_ADDRESS)
+#else
 #define TMC_UART_SW_DEFINE(IC, ST, L, AI) TMCMarlin<IC##Stepper, L, AI> stepper##ST(ST##_SERIAL_RX_PIN, ST##_SERIAL_TX_PIN, float(ST##_RSENSE), ST##_SLAVE_ADDRESS)
+#endif
 
 #define _TMC_SPI_DEFINE(IC, ST, AI) __TMC_SPI_DEFINE(IC, ST, TMC_##ST##_LABEL, AI)
 #define TMC_SPI_DEFINE(ST, AI) _TMC_SPI_DEFINE(ST##_DRIVER_TYPE, ST, AI##_AXIS)
@@ -298,7 +309,11 @@ enum StealthIndex : uint8_t {
       TMC_UART_DEFINE(HW, X, X);
       #define X_HAS_HW_SERIAL 1
     #else
+      #ifdef HAS_TMC22xx
+
+      #else
       TMC_UART_DEFINE(SW, X, X);
+      #endif
       #define X_HAS_SW_SERIAL 1
     #endif
   #endif
@@ -844,6 +859,63 @@ enum StealthIndex : uint8_t {
     st.GSTAT(); // Clear GSTAT
   }
 #endif // TMC5160
+
+
+
+#if HAS_DRIVER(TMC2240)
+  template<char AXIS_LETTER, char DRIVER_ID, AxisEnum AXIS_ID>
+  void tmc_init(TMCMarlin<TMC2240Stepper, AXIS_LETTER, DRIVER_ID, AXIS_ID> &st, const uint16_t mA, const uint16_t microsteps, const uint32_t hyb_thrs, const bool stealth, const chopper_timing_t &chop_init, const bool interpolate, float hold_multiplier) {
+    st.begin();
+    TMC2240_n::GCONF_t gconf{0};
+    gconf.en_pwm_mode = !stealth;
+    st.GCONF(gconf.sr);
+    st.en_pwm_mode(stealth);
+    st.stored.stealthChop_enabled = stealth;
+    
+    TMC2240_n::DRV_CONF_t drv_conf{0};
+    drv_conf.current_range=TMC2240_CURRENT_RANGE;
+    st.DRV_CONF(drv_conf.sr);
+ //   SERIAL_ECHOLNPGM("test 1");
+ //   SERIAL_ECHOLNPGM("mA=", mA);   
+    st.rms_current(mA, hold_multiplier);
+
+    st.iholddelay(6);
+    st.irundelay(4);
+   
+    TMC2240_n::CHOPCONF_t chopconf{0};
+    chopconf.toff   = 3;
+    chopconf.hstrt  = 5;
+    chopconf.hend   = 2;
+    chopconf.TBL    = 2;
+    chopconf.tpfd   = 4;
+    chopconf.intpol = 1;
+
+    st.CHOPCONF(chopconf.sr);
+    st.microsteps(microsteps);
+  //  st.CHOPCONF(0x14410153);  //0x14410153
+
+    TMC2240_n::PWMCONF_t  pwmconf{0};
+    pwmconf.pwm_ofs = 30;
+    pwmconf.pwm_autoscale = 1;
+    pwmconf.pwm_autograd = 1;
+    pwmconf.pwm_reg = 4;
+    pwmconf.pwm_lim = 12;
+    st.PWMCONF(pwmconf.sr);
+    st.TPOWERDOWN(10);
+
+  //  st.GCONF(0x00);
+  //  st.IHOLD_IRUN(0x04071f03);
+  //  st.CHOPCONF(0x14410153);  //0x14410153
+  //  st.PWMCONF(0xC40c1e1d);
+   st.GSTAT(0x07);
+   st.GSTAT(0x00); 
+
+//   OUT_WRITE(PB11, HIGH);
+   delay(200);
+  }
+#endif // TMC2240
+
+
 
 void restore_trinamic_drivers() {
   #if AXIS_IS_TMC(X)
