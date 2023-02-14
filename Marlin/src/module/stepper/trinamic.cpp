@@ -875,7 +875,7 @@ enum StealthIndex : uint8_t {
     TMC2240_n::DRV_CONF_t drv_conf{0};
     drv_conf.current_range=TMC2240_CURRENT_RANGE;
     st.DRV_CONF(drv_conf.sr);
- //   SERIAL_ECHOLNPGM("test 1");
+    SERIAL_ECHOLNPGM("tmc2240");
  //   SERIAL_ECHOLNPGM("mA=", mA);   
     st.rms_current(mA, hold_multiplier);
 
@@ -912,6 +912,13 @@ enum StealthIndex : uint8_t {
 
 //   OUT_WRITE(PB11, HIGH);
    delay(200);
+   int irun,ihold,global_scaler=0;
+   irun=st.test_connection();
+   ihold=st.test_connection1();
+   global_scaler=st.test_connection2();
+   SERIAL_ECHOLNPGM("irun=", irun);  
+   SERIAL_ECHOLNPGM("ihold=", ihold);  
+   SERIAL_ECHOLNPGM("global_scaler=", global_scaler);     
   }
 #endif // TMC2240
 
