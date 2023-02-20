@@ -192,6 +192,10 @@
   #include "feature/runout.h"
 #endif
 
+#if HAS_FILAMENT_SFS
+  #include "feature/filament.h"
+#endif
+
 #if EITHER(PROBE_TARE, HAS_Z_SERVO_PROBE)
   #include "module/probe.h"
 #endif
@@ -809,6 +813,11 @@ void idle(bool no_stepper_sleep/*=false*/) {
       runout.run();
   #endif
 
+  #if HAS_FILAMENT_SFS
+    if (TERN1(HAS_PRUSA_MMU2, !mmu2.enabled()))
+      filament.run();
+  #endif
+
   // Run HAL idle tasks
   hal.idletask();
 
@@ -1243,6 +1252,12 @@ void setup() {
   #if HAS_FILAMENT_SENSOR
     SETUP_RUN(runout.setup());
   #endif
+
+
+  #if HAS_FILAMENT_SFS
+    SETUP_RUN(filament.setup());
+  #endif
+
 
   #if HAS_TMC220x
     SETUP_RUN(tmc_serial_begin());

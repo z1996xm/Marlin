@@ -633,6 +633,21 @@
   #endif
 #endif
 
+
+#if ENABLED(FILAMENT_SFS_SENSOR)
+  #define HAS_FILAMENT_SFS 1
+  #if NUM_FILAMENT_SFS_SENSORS > 1
+    #define MULTI_FILAMENT_SENSOR 1
+  #endif
+  #ifdef FILAMENTSFS_RUNOUT_DISTANCE_MM
+    #define HAS_FILAMENTSFS_RUNOUT_DISTANCE 1
+  #endif
+  #if ENABLED(MIXING_EXTRUDER)
+    #define WATCH_ALL_RUNOUT_SENSORS
+  #endif
+#endif
+
+
 #if ANY(PTC_PROBE, PTC_BED, PTC_HOTEND)
   #define HAS_PTC 1
 #endif
