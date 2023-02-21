@@ -56,7 +56,7 @@ class RunoutResponseDebounced;
 
 typedef TFilamentMonitor<
           TERN(HAS_FILAMENT_RUNOUT_DISTANCE, RunoutResponseDelayed, RunoutResponseDebounced),
-          TERN(SFS_FILAMENT_MOTION, FilamentSensorEncoder, FilamentSensorSwitch)
+          TERN(FILAMENT_MOTION_SENSOR, FilamentSensorEncoder, FilamentSensorSwitch)
         > FilamentMonitor;
 
 extern FilamentMonitor runout;
@@ -243,7 +243,6 @@ class FilamentSensorBase {
 };
 
 #if ENABLED(FILAMENT_MOTION_SENSOR)
-
   /**
    * This sensor uses a magnetic encoder disc and a Hall effect
    * sensor (or a slotted disc and optical sensor). The state

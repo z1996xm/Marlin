@@ -707,8 +707,18 @@
 #if HAS_FILAMENT_SENSOR
   #define FIL_RUNOUT1_PIN FIL_RUNOUT_PIN  // Filament Sensor first pin alias
 #else
-  // #undef FIL_RUNOUT_PIN
-  // #undef FIL_RUNOUT1_PIN
+  #undef FIL_RUNOUT_PIN
+  #undef FIL_RUNOUT1_PIN
+#endif
+
+#if HAS_FILAMENT_SFS
+  #define SFS_MOTION1_PIN SFS_MOTION_PIN  // Filament Sensor first pin alias
+  #define SFS_RUNOUT1_PIN SFS_RUNOUT_PIN  // Filament Sensor first pin alias
+#else
+  #undef SFS_MOTION_PIN
+  #undef SFS_MOTION1_PIN
+  #undef SFS_RUNOUT_PIN
+  #undef SFS_RUNOUT1_PIN
 #endif
 
 #if NUM_RUNOUT_SENSORS < 2

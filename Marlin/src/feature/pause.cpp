@@ -54,6 +54,10 @@
   #include "runout.h"
 #endif
 
+#if HAS_FILAMENT_SFS
+  #include "filament.h"
+#endif
+
 #if ENABLED(HOST_ACTION_COMMANDS)
   #include "host_actions.h"
 #endif
@@ -709,6 +713,7 @@ void resume_print(const_float_t slow_load_length/*=0*/, const_float_t fast_load_
   #endif
 
   TERN_(HAS_FILAMENT_SENSOR, runout.reset());
+  TERN_(HAS_FILAMENT_SFS, filament.reset());
 
   ui.reset_status();
   ui.return_to_status();

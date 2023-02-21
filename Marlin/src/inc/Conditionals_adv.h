@@ -637,7 +637,7 @@
 #if ENABLED(FILAMENT_SFS_SENSOR)
   #define HAS_FILAMENT_SFS 1
   #if NUM_FILAMENT_SFS_SENSORS > 1
-    #define MULTI_FILAMENT_SENSOR 1
+    #define MULTI_FILAMENTSFS_SENSOR 1
   #endif
   #ifdef FILAMENTSFS_RUNOUT_DISTANCE_MM
     #define HAS_FILAMENTSFS_RUNOUT_DISTANCE 1
@@ -820,6 +820,14 @@
     #define SHUTDOWN_ACTION   "shutdown"
   #endif
   #if HAS_FILAMENT_SENSOR
+    #ifndef ACTION_ON_FILAMENT_RUNOUT
+      #define ACTION_ON_FILAMENT_RUNOUT "filament_runout"
+    #endif
+    #ifndef ACTION_REASON_ON_FILAMENT_RUNOUT
+      #define ACTION_REASON_ON_FILAMENT_RUNOUT "filament_runout"
+    #endif
+  #endif
+  #if HAS_FILAMENT_SFS
     #ifndef ACTION_ON_FILAMENT_RUNOUT
       #define ACTION_ON_FILAMENT_RUNOUT "filament_runout"
     #endif

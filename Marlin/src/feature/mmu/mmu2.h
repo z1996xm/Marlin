@@ -27,6 +27,10 @@
   #include "../runout.h"
 #endif
 
+#if HAS_FILAMENT_SFS
+  #include "../filament.h"
+#endif
+
 #if SERIAL_USB
   #define MMU_RX_SIZE 256
   #define MMU_TX_SIZE 256
@@ -104,6 +108,9 @@ private:
     finda_runout_valid = valid;
     #if HAS_FILAMENT_SENSOR
       if (valid) runout.reset();
+    #endif
+    #if HAS_FILAMENT_SFS
+      if (valid) filament.reset();
     #endif
   }
 

@@ -49,6 +49,10 @@
   #include "../../../feature/runout.h"
 #endif
 
+#if HAS_FILAMENT_SFS
+  #include "../../../feature/filament.h"
+#endif
+
 /**
  * M600: Pause for filament change
  *

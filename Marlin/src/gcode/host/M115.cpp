@@ -135,6 +135,9 @@ void GcodeSuite::M115() {
     // RUNOUT (M412, M600)
     cap_line(F("RUNOUT"), ENABLED(FILAMENT_RUNOUT_SENSOR));
 
+    // RUNOUT (M412, M600)
+    cap_line(F("FILAMENT"), ENABLED(FILAMENT_SFS_SENSOR));
+
     // Z_PROBE (G30)
     cap_line(F("Z_PROBE"), ENABLED(HAS_BED_PROBE));
 

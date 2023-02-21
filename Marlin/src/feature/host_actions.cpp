@@ -37,6 +37,10 @@
   #include "runout.h"
 #endif
 
+#if HAS_FILAMENT_SFS
+  #include "filament.h"
+#endif
+
 HostUI hostui;
 
 void HostUI::action(FSTR_P const fstr, const bool eol) {

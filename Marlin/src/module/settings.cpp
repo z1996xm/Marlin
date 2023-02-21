@@ -118,6 +118,13 @@
   #endif
 #endif
 
+#if HAS_FILAMENT_SFS
+  #include "../feature/filament.h"
+  #ifndef FIL_SFS_ENABLED_DEFAULT
+    #define FIL_SFS_ENABLED_DEFAULT true
+  #endif
+#endif
+
 #if ENABLED(ADVANCE_K_EXTRA)
   extern float other_extruder_advance_K[DISTINCT_E];
 #endif
@@ -2956,6 +2963,13 @@ void MarlinSettings::reset() {
     TERN_(HAS_FILAMENT_RUNOUT_DISTANCE, runout.set_runout_distance(FILAMENT_RUNOUT_DISTANCE_MM));
   #endif
 
+  #if HAS_FILAMENT_SFS
+    filament.enabled = FIL_SFS_ENABLED_DEFAULT;
+    filament.reset();
+    TERN_(HAS_FILAMENTSFS_RUNOUT_DISTANCE, filament.set_runout_distance(FILAMENTSFS_RUNOUT_DISTANCE_MM));
+  #endif
+
+
   //
   // Tool-change Settings
   //
@@ -3723,7 +3737,8 @@ void MarlinSettings::reset() {
     // Filament Runout Sensor
     //
     TERN_(HAS_FILAMENT_SENSOR, gcode.M412_report(forReplay));
-
+    TERN_(HAS_FILAMENT_SFS, gcode.M412_report(forReplay));
+    
     #if HAS_ETHERNET
       CONFIG_ECHO_HEADING("Ethernet");
       if (!forReplay) ETH0_report();

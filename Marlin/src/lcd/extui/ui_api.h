@@ -311,6 +311,19 @@ namespace ExtUI {
     #endif
   #endif
 
+
+  #if HAS_FILAMENT_SFS
+    bool getFilamentRunoutEnabled();
+    void setFilamentRunoutEnabled(const bool);
+    bool getFilamentRunoutState();
+    void setFilamentRunoutState(const bool);
+
+    #if HAS_FILAMENTSFS_RUNOUT_DISTANCE
+      float getFilamentRunoutDistance_mm();
+      void setFilamentRunoutDistance_mm(const_float_t);
+    #endif
+  #endif
+
   #if ENABLED(CASE_LIGHT_ENABLE)
     bool getCaseLightState();
     void setCaseLightState(const bool);
