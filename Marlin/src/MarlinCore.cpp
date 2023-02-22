@@ -816,6 +816,9 @@ void idle(bool no_stepper_sleep/*=false*/) {
   #if HAS_FILAMENT_SFS
     if (TERN1(HAS_PRUSA_MMU2, !mmu2.enabled()))
       filament.run();
+      #if ENABLED(SFS_FILAMENT_MOTION)
+        filament.motion();
+      #endif
   #endif
 
   // Run HAL idle tasks

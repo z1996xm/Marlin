@@ -51,7 +51,7 @@ void event_filament_func(const uint8_t extruder){
     TERN_(EXTENSIBLE_UI, ExtUI::onFilamentRunout(ExtUI::getTool(extruder)));
     TERN_(DWIN_LCD_PROUI, DWIN_FilamentRunout(extruder));  
 
-    #if ANY(HOST_PROMPT_SUPPORT, HOST_ACTION_COMMANDS, MULTI_FILAMENT_SENSOR)
+    #if ANY(HOST_PROMPT_SUPPORT, HOST_ACTION_COMMANDS, MULTI_FILAMENTSFS_SENSOR)
         const char tool = '0' + TERN0(MULTI_FILAMENTSFS_SENSOR, extruder);
     #endif 
 
@@ -88,9 +88,9 @@ void event_filament_func(const uint8_t extruder){
     #endif // HOST_ACTION_COMMANDS
 
     if (run_runout_script) {
-        #if MULTI_FILAMENT_SENSOR
-            char script[strlen(FILAMENT_RUNOUT_SCRIPT) + 1];
-            sprintf_P(script, PSTR(FILAMENT_RUNOUT_SCRIPT), tool);
+        #if MULTI_FILAMENTSFS_SENSOR
+            char script[strlen(FILAMENT_SFS_SCRIPT) + 1];
+            sprintf_P(script, PSTR(FILAMENT_SFS_SCRIPT), tool);
             #if ENABLED(FILAMENT_RUNOUT_SENSOR_DEBUG)
                 SERIAL_ECHOLNPGM("Runout Command: ", script);
             #endif
@@ -98,7 +98,7 @@ void event_filament_func(const uint8_t extruder){
         #else
             #if ENABLED(FILAMENT_RUNOUT_SENSOR_DEBUG)
                 SERIAL_ECHOPGM("Runout Command: ");
-                SERIAL_ECHOLNPGM(FILAMENT_RUNOUT_SCRIPT);
+                SERIAL_ECHOLNPGM(FILAMENT_SFS_SCRIPT);
             #endif
         queue.inject(F(FILAMENT_SFS_SCRIPT));
     #endif

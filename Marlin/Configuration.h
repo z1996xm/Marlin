@@ -1896,8 +1896,8 @@
   #define SFS_MOTION_STATE    LOW        // Pin state indicating that filament is NOT present.
   #define SFS_RUNOUT_PULLUP  
   #define SFS_MOTION_PULLUP  
-  #define SFS_RUNOUT_PULLDOWN
-  #define SFS_MOTION_PULLDOWN
+  // #define SFS_RUNOUT_PULLDOWN
+  // #define SFS_MOTION_PULLDOWN
 
   // #define SFS_RUNOUT1_STATE    LOW        // Pin state indicating that filament is NOT present.
   // #define SFS_MOTION1_STATE    LOW        // Pin state indicating that filament is NOT present.
@@ -1910,7 +1910,7 @@
   // After a runout is detected, continue printing this length of filament
   // before executing the runout script. Useful for a sensor at the end of
   // a feed tube. Requires 4 bytes SRAM per sensor, plus 4 bytes overhead.
- // #define FILAMENTSFS_RUNOUT_DISTANCE_MM 7
+  #define FILAMENTSFS_RUNOUT_DISTANCE_MM 3
 
   #ifdef FILAMENTSFS_RUNOUT_DISTANCE_MM
     // Enable this option to use an encoder disc that toggles the runout pin
