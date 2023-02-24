@@ -120,8 +120,8 @@
 
 #if HAS_FILAMENT_SFS
   #include "../feature/filament.h"
-  #ifndef FIL_SFS_ENABLED_DEFAULT
-    #define FIL_SFS_ENABLED_DEFAULT true
+  #ifndef SFS_ENABLED_DEFAULT
+    #define SFS_ENABLED_DEFAULT true
   #endif
 #endif
 
@@ -2964,9 +2964,8 @@ void MarlinSettings::reset() {
   #endif
 
   #if HAS_FILAMENT_SFS
-    filament.enabled = FIL_SFS_ENABLED_DEFAULT;
+    filament.enabled = SFS_ENABLED_DEFAULT;
     filament.reset();
-    TERN_(HAS_FILAMENTSFS_RUNOUT_DISTANCE, filament.set_runout_distance(FILAMENTSFS_RUNOUT_DISTANCE_MM));
   #endif
 
 

@@ -121,9 +121,6 @@ Stepper stepper; // Singleton
   #include "../feature/runout.h"
 #endif
 
-#if HAS_FILAMENTSFS_RUNOUT_DISTANCE
-  #include "../feature/filament.h"
-#endif
 
 #if ENABLED(AUTO_POWER_CONTROL)
   #include "../feature/power.h"
@@ -2141,7 +2138,6 @@ uint32_t Stepper::block_phase_isr() {
         }
       #endif
       TERN_(HAS_FILAMENT_RUNOUT_DISTANCE, runout.block_completed(current_block));
-      TERN_(HAS_FILAMENTSFS_RUNOUT_DISTANCE, filament.block_completed(current_block));
       discard_current_block();
     }
     else {

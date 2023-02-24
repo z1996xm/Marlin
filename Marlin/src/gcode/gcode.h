@@ -1010,11 +1010,6 @@ private:
     static void M412_report(const bool forReplay=true);
   #endif
 
-  #if HAS_FILAMENT_SFS
-    static void M412();
-    static void M412_report(const bool forReplay=true);
-  #endif
-
   #if HAS_MULTI_LANGUAGE
     static void M414();
     static void M414_report(const bool forReplay=true);

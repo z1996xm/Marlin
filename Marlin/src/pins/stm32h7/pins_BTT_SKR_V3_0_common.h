@@ -142,14 +142,12 @@
 // Filament Runout Sensor
 //
 #ifdef FILAMENT_RUNOUT_SENSOR
- // #define FIL_RUNOUT_PIN                      PC2   // E0DET
-  #define FIL_RUNOUT_PIN                        PA0   // E1DET
+  #define FIL_RUNOUT_PIN                        PC2  // E0DET
+  #ifdef  HAS_FILAMENT_SFS
+    #define SFS_RUNOUT_PIN                      PA0  // E0MOTION
+  #endif
 #endif
 
-#ifdef  FILAMENT_SFS_SENSOR
-  #define SFS_MOTION_PIN                        PC2   // E0MOTION
-  #define SFS_RUNOUT_PIN                        PA0   // E0RUNOUT
-#endif
 
 //
 // Power Supply Control

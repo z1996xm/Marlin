@@ -1112,7 +1112,20 @@
     #ifndef FIL_RUNOUT1_PULLDOWN
       #define FIL_RUNOUT1_PULLDOWN FIL_RUNOUT_PULLDOWN
     #endif
+
+    #ifdef SFS_RUNOUT_SENSOR
+      #ifndef SFS_RUNOUT1_STATE
+        #define SFS_RUNOUT1_STATE SFS_RUNOUT_STATE
+      #endif      
+      #ifndef SFS_RUNOUT1_PULLUP
+        #define SFS_RUNOUT1_PULLUP SFS_RUNOUT_PULLUP
+      #endif
+      #ifndef SFS_RUNOUT1_PULLDOWN
+        #define SFS_RUNOUT1_PULLDOWN SFS_RUNOUT_PULLDOWN
+      #endif
+    #endif
   #endif
+
   #if NUM_RUNOUT_SENSORS >= 2
     #ifndef FIL_RUNOUT2_STATE
       #define FIL_RUNOUT2_STATE FIL_RUNOUT_STATE
@@ -1123,7 +1136,20 @@
     #ifndef FIL_RUNOUT2_PULLDOWN
       #define FIL_RUNOUT2_PULLDOWN FIL_RUNOUT_PULLDOWN
     #endif
+
+    #ifdef SFS_RUNOUT_SENSOR
+      #ifndef SFS_RUNOUT2_STATE
+        #define SFS_RUNOUT2_STATE SFS_RUNOUT_STATE
+      #endif      
+      #ifndef SFS_RUNOUT2_PULLUP
+        #define SFS_RUNOUT2_PULLUP SFS_RUNOUT_PULLUP
+      #endif
+      #ifndef SFS_RUNOUT2_PULLDOWN
+        #define SFS_RUNOUT2_PULLDOWN SFS_RUNOUT_PULLDOWN
+      #endif
+    #endif
   #endif
+
   #if NUM_RUNOUT_SENSORS >= 3
     #ifndef FIL_RUNOUT3_STATE
       #define FIL_RUNOUT3_STATE FIL_RUNOUT_STATE
@@ -1134,7 +1160,20 @@
     #ifndef FIL_RUNOUT3_PULLDOWN
       #define FIL_RUNOUT3_PULLDOWN FIL_RUNOUT_PULLDOWN
     #endif
+
+    #ifdef SFS_RUNOUT_SENSOR
+      #ifndef SFS_RUNOUT3_STATE
+        #define SFS_RUNOUT3_STATE SFS_RUNOUT_STATE
+      #endif      
+      #ifndef SFS_RUNOUT3_PULLUP
+        #define SFS_RUNOUT3_PULLUP SFS_RUNOUT_PULLUP
+      #endif
+      #ifndef SFS_RUNOUT3_PULLDOWN
+        #define SFS_RUNOUT3_PULLDOWN SFS_RUNOUT_PULLDOWN
+      #endif
+    #endif
   #endif
+
   #if NUM_RUNOUT_SENSORS >= 4
     #ifndef FIL_RUNOUT4_STATE
       #define FIL_RUNOUT4_STATE FIL_RUNOUT_STATE
@@ -1145,7 +1184,20 @@
     #ifndef FIL_RUNOUT4_PULLDOWN
       #define FIL_RUNOUT4_PULLDOWN FIL_RUNOUT_PULLDOWN
     #endif
+
+    #ifdef SFS_RUNOUT_SENSOR
+      #ifndef SFS_RUNOUT4_STATE
+        #define SFS_RUNOUT4_STATE SFS_RUNOUT_STATE
+      #endif      
+      #ifndef SFS_RUNOUT4_PULLUP
+        #define SFS_RUNOUT4_PULLUP SFS_RUNOUT_PULLUP
+      #endif
+      #ifndef SFS_RUNOUT4_PULLDOWN
+        #define SFS_RUNOUT4_PULLDOWN SFS_RUNOUT_PULLDOWN
+      #endif
+    #endif
   #endif
+
   #if NUM_RUNOUT_SENSORS >= 5
     #ifndef FIL_RUNOUT5_STATE
       #define FIL_RUNOUT5_STATE FIL_RUNOUT_STATE
@@ -1156,7 +1208,20 @@
     #ifndef FIL_RUNOUT5_PULLDOWN
       #define FIL_RUNOUT5_PULLDOWN FIL_RUNOUT_PULLDOWN
     #endif
+
+    #ifdef SFS_RUNOUT_SENSOR
+      #ifndef SFS_RUNOUT5_STATE
+        #define SFS_RUNOUT5_STATE SFS_RUNOUT_STATE
+      #endif      
+      #ifndef SFS_RUNOUT5_PULLUP
+        #define SFS_RUNOUT5_PULLUP SFS_RUNOUT_PULLUP
+      #endif
+      #ifndef SFS_RUNOUT5_PULLDOWN
+        #define SFS_RUNOUT5_PULLDOWN SFS_RUNOUT_PULLDOWN
+      #endif
+    #endif
   #endif
+
   #if NUM_RUNOUT_SENSORS >= 6
     #ifndef FIL_RUNOUT6_STATE
       #define FIL_RUNOUT6_STATE FIL_RUNOUT_STATE
@@ -1167,7 +1232,20 @@
     #ifndef FIL_RUNOUT6_PULLDOWN
       #define FIL_RUNOUT6_PULLDOWN FIL_RUNOUT_PULLDOWN
     #endif
+
+    #ifdef SFS_RUNOUT_SENSOR
+      #ifndef SFS_RUNOUT6_STATE
+        #define SFS_RUNOUT6_STATE SFS_RUNOUT_STATE
+      #endif      
+      #ifndef SFS_RUNOUT6_PULLUP
+        #define SFS_RUNOUT6_PULLUP SFS_RUNOUT_PULLUP
+      #endif
+      #ifndef SFS_RUNOUT6_PULLDOWN
+        #define SFS_RUNOUT6_PULLDOWN SFS_RUNOUT_PULLDOWN
+      #endif
+    #endif
   #endif
+
   #if NUM_RUNOUT_SENSORS >= 7
     #ifndef FIL_RUNOUT7_STATE
       #define FIL_RUNOUT7_STATE FIL_RUNOUT_STATE
@@ -1178,7 +1256,20 @@
     #ifndef FIL_RUNOUT7_PULLDOWN
       #define FIL_RUNOUT7_PULLDOWN FIL_RUNOUT_PULLDOWN
     #endif
+
+    #ifdef SFS_RUNOUT_SENSOR
+      #ifndef SFS_RUNOUT7_STATE
+        #define SFS_RUNOUT7_STATE SFS_RUNOUT_STATE
+      #endif      
+      #ifndef SFS_RUNOUT7_PULLUP
+        #define SFS_RUNOUT7_PULLUP SFS_RUNOUT_PULLUP
+      #endif
+      #ifndef SFS_RUNOUT7_PULLDOWN
+        #define SFS_RUNOUT7_PULLDOWN SFS_RUNOUT_PULLDOWN
+      #endif
+    #endif
   #endif
+
   #if NUM_RUNOUT_SENSORS >= 8
     #ifndef FIL_RUNOUT8_STATE
       #define FIL_RUNOUT8_STATE FIL_RUNOUT_STATE
@@ -1190,175 +1281,16 @@
       #define FIL_RUNOUT8_PULLDOWN FIL_RUNOUT_PULLDOWN
     #endif
   #endif
-#endif // FILAMENT_RUNOUT_SENSOR
 
-
-#if ENABLED(FILAMENT_SFS_SENSOR)
-  #if NUM_FILAMENT_SFS_SENSORS >= 1
-    #ifndef SFS_RUNOUT1_STATE
-      #define SFS_RUNOUT1_STATE SFS_RUNOUT_STATE
-    #endif
-    #ifndef SFS_MOTION1_STATE
-      #define SFS_MOTION1_STATE SFS_MOTION_STATE
-    #endif        
-    #ifndef SFS_RUNOUT1_PULLUP
-      #define SFS_RUNOUT1_PULLUP SFS_RUNOUT_PULLUP
-    #endif
-    #ifndef SFS_MOTION1_PULLUP
-      #define SFS_MOTION1_PULLUP SFS_MOTION_PULLUP
-    #endif 
-    #ifndef SFS_RUNOUT1_PULLDOWN
-      #define SFS_RUNOUT1_PULLDOWN SFS_RUNOUT_PULLDOWN
-    #endif
-    #ifndef SFS_MOTION1_PULLDOWN
-      #define SFS_MOTION1_PULLDOWN SFS_MOTION_PULLDOWN
-    #endif
-  #endif
-
-  #if NUM_FILAMENT_SFS_SENSORS >= 2
-    #ifndef SFS_RUNOUT2_STATE
-      #define SFS_RUNOUT2_STATE SFS_RUNOUT_STATE
-    #endif
-    #ifndef SFS_MOTION2_STATE
-      #define SFS_MOTION2_STATE SFS_MOTION_STATE
-    #endif        
-    #ifndef SFS_RUNOUT2_PULLUP
-      #define SFS_RUNOUT2_PULLUP SFS_RUNOUT_PULLUP
-    #endif
-    #ifndef SFS_MOTION2_PULLUP
-      #define SFS_MOTION2_PULLUP SFS_MOTION_PULLUP
-    #endif 
-    #ifndef SFS_RUNOUT2_PULLDOWN
-      #define SFS_RUNOUT2_PULLDOWN SFS_RUNOUT_PULLDOWN
-    #endif
-    #ifndef SFS_MOTION2_PULLDOWN
-      #define SFS_MOTION2_PULLDOWN SFS_MOTION_PULLDOWN
-    #endif
-  #endif
-
-  #if NUM_FILAMENT_SFS_SENSORS >= 3
-    #ifndef SFS_RUNOUT3_STATE
-      #define SFS_RUNOUT3_STATE SFS_RUNOUT_STATE
-    #endif
-    #ifndef SFS_MOTION3_STATE
-      #define SFS_MOTION3_STATE SFS_MOTION_STATE
-    #endif        
-    #ifndef SFS_RUNOUT3_PULLUP
-      #define SFS_RUNOUT3_PULLUP SFS_RUNOUT_PULLUP
-    #endif
-    #ifndef SFS_MOTION3_PULLUP
-      #define SFS_MOTION3_PULLUP SFS_MOTION_PULLUP
-    #endif 
-    #ifndef SFS_RUNOUT3_PULLDOWN
-      #define SFS_RUNOUT3_PULLDOWN SFS_RUNOUT_PULLDOWN
-    #endif
-    #ifndef SFS_MOTION3_PULLDOWN
-      #define SFS_MOTION3_PULLDOWN SFS_MOTION_PULLDOWN
-    #endif
-  #endif
-
-  #if NUM_FILAMENT_SFS_SENSORS >= 4
-    #ifndef SFS_RUNOUT4_STATE
-      #define SFS_RUNOUT4_STATE SFS_RUNOUT_STATE
-    #endif
-    #ifndef SFS_MOTION4_STATE
-      #define SFS_MOTION4_STATE SFS_MOTION_STATE
-    #endif        
-    #ifndef SFS_RUNOUT4_PULLUP
-      #define SFS_RUNOUT4_PULLUP SFS_RUNOUT_PULLUP
-    #endif
-    #ifndef SFS_MOTION4_PULLUP
-      #define SFS_MOTION4_PULLUP SFS_MOTION_PULLUP
-    #endif 
-    #ifndef SFS_RUNOUT4_PULLDOWN
-      #define SFS_RUNOUT4_PULLDOWN SFS_RUNOUT_PULLDOWN
-    #endif
-    #ifndef SFS_MOTION4_PULLDOWN
-      #define SFS_MOTION4_PULLDOWN SFS_MOTION_PULLDOWN
-    #endif
-  #endif
-
-  #if NUM_FILAMENT_SFS_SENSORS >= 5
-    #ifndef SFS_RUNOUT5_STATE
-      #define SFS_RUNOUT5_STATE SFS_RUNOUT_STATE
-    #endif
-    #ifndef SFS_MOTION5_STATE
-      #define SFS_MOTION5_STATE SFS_MOTION_STATE
-    #endif        
-    #ifndef SFS_RUNOUT5_PULLUP
-      #define SFS_RUNOUT5_PULLUP SFS_RUNOUT_PULLUP
-    #endif
-    #ifndef SFS_MOTION5_PULLUP
-      #define SFS_MOTION5_PULLUP SFS_MOTION_PULLUP
-    #endif 
-    #ifndef SFS_RUNOUT5_PULLDOWN
-      #define SFS_RUNOUT5_PULLDOWN SFS_RUNOUT_PULLDOWN
-    #endif
-    #ifndef SFS_MOTION5_PULLDOWN
-      #define SFS_MOTION5_PULLDOWN SFS_MOTION_PULLDOWN
-    #endif
-  #endif
-
-  #if NUM_FILAMENT_SFS_SENSORS >= 6
-    #ifndef SFS_RUNOUT6_STATE
-      #define SFS_RUNOUT6_STATE SFS_RUNOUT_STATE
-    #endif
-    #ifndef SFS_MOTION6_STATE
-      #define SFS_MOTION6_STATE SFS_MOTION_STATE
-    #endif        
-    #ifndef SFS_RUNOUT6_PULLUP
-      #define SFS_RUNOUT6_PULLUP SFS_RUNOUT_PULLUP
-    #endif
-    #ifndef SFS_MOTION6_PULLUP
-      #define SFS_MOTION6_PULLUP SFS_MOTION_PULLUP
-    #endif 
-    #ifndef SFS_RUNOUT6_PULLDOWN
-      #define SFS_RUNOUT6_PULLDOWN SFS_RUNOUT_PULLDOWN
-    #endif
-    #ifndef SFS_MOTION6_PULLDOWN
-      #define SFS_MOTION6_PULLDOWN SFS_MOTION_PULLDOWN
-    #endif
-  #endif
-
-  #if NUM_FILAMENT_SFS_SENSORS >= 7
-    #ifndef SFS_RUNOUT7_STATE
-      #define SFS_RUNOUT7_STATE SFS_RUNOUT_STATE
-    #endif
-    #ifndef SFS_MOTION7_STATE
-      #define SFS_MOTION7_STATE SFS_MOTION_STATE
-    #endif        
-    #ifndef SFS_RUNOUT7_PULLUP
-      #define SFS_RUNOUT7_PULLUP SFS_RUNOUT_PULLUP
-    #endif
-    #ifndef SFS_MOTION7_PULLUP
-      #define SFS_MOTION7_PULLUP SFS_MOTION_PULLUP
-    #endif 
-    #ifndef SFS_RUNOUT7_PULLDOWN
-      #define SFS_RUNOUT7_PULLDOWN SFS_RUNOUT_PULLDOWN
-    #endif
-    #ifndef SFS_MOTION7_PULLDOWN
-      #define SFS_MOTION7_PULLDOWN SFS_MOTION_PULLDOWN
-    #endif
-  #endif
-
-  #if NUM_FILAMENT_SFS_SENSORS >= 8
+  #ifdef SFS_RUNOUT_SENSOR
     #ifndef SFS_RUNOUT8_STATE
       #define SFS_RUNOUT8_STATE SFS_RUNOUT_STATE
-    #endif
-    #ifndef SFS_MOTION8_STATE
-      #define SFS_MOTION8_STATE SFS_MOTION_STATE
-    #endif        
+    #endif      
     #ifndef SFS_RUNOUT8_PULLUP
       #define SFS_RUNOUT8_PULLUP SFS_RUNOUT_PULLUP
     #endif
-    #ifndef SFS_MOTION8_PULLUP
-      #define SFS_MOTION8_PULLUP SFS_MOTION_PULLUP
-    #endif 
     #ifndef SFS_RUNOUT8_PULLDOWN
       #define SFS_RUNOUT8_PULLDOWN SFS_RUNOUT_PULLDOWN
-    #endif
-    #ifndef SFS_MOTION8_PULLDOWN
-      #define SFS_MOTION8_PULLDOWN SFS_MOTION_PULLDOWN
     #endif
   #endif
 #endif // FILAMENT_RUNOUT_SENSOR

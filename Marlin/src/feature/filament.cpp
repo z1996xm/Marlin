@@ -15,14 +15,7 @@ bool FilamentSFSMonitorBase::enabled = true,
   bool FilamentSFSMonitorBase::host_handling; // = false
 #endif
 
-
-#if HAS_FILAMENTSFS_RUNOUT_DISTANCE
-  float SFSResponseDelayed::runout_distance_mm = FILAMENTSFS_RUNOUT_DISTANCE_MM;
-  volatile float SFSResponseDelayed::runout_mm_countdown[NUM_FILAMENT_SFS_SENSORS];
-  uint8_t FilamentSFSSensorEncoder::motion_detected;
-#endif
-int8_t SFSResponseDelayed::runout_count[NUM_FILAMENT_SFS_SENSORS]; // = 0
-
+int8_t SFSResponseDelayed::runout_count[NUM_RUNOUT_SENSORS]; // = 0
 
 #include "../MarlinCore.h"
 #include "../feature/pause.h"
@@ -51,8 +44,8 @@ void event_filament_func(const uint8_t extruder){
     TERN_(EXTENSIBLE_UI, ExtUI::onFilamentRunout(ExtUI::getTool(extruder)));
     TERN_(DWIN_LCD_PROUI, DWIN_FilamentRunout(extruder));  
 
-    #if ANY(HOST_PROMPT_SUPPORT, HOST_ACTION_COMMANDS, MULTI_FILAMENTSFS_SENSOR)
-        const char tool = '0' + TERN0(MULTI_FILAMENTSFS_SENSOR, extruder);
+    #if ANY(HOST_PROMPT_SUPPORT, HOST_ACTION_COMMANDS, MULTI_FILAMENT_SENSOR)
+        const char tool = '0' + TERN0(MULTI_FILAMENT_SENSOR, extruder);
     #endif 
 
     //action:out_of_filament
@@ -88,7 +81,7 @@ void event_filament_func(const uint8_t extruder){
     #endif // HOST_ACTION_COMMANDS
 
     if (run_runout_script) {
-        #if MULTI_FILAMENTSFS_SENSOR
+        #if MULTI_FILAMENT_SENSOR
             char script[strlen(FILAMENT_SFS_SCRIPT) + 1];
             sprintf_P(script, PSTR(FILAMENT_SFS_SCRIPT), tool);
             #if ENABLED(FILAMENT_RUNOUT_SENSOR_DEBUG)
