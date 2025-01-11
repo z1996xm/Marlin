@@ -511,7 +511,10 @@
       #define DOGLCD_CS              EXP1_03_PIN
       #define DOGLCD_A0              EXP1_04_PIN
       //#define LCD_BACKLIGHT_PIN           -1
+      #define DOGLCD_SCK             EXP2_02_PIN
+      #define DOGLCD_MOSI            EXP2_06_PIN
 
+      #define SOFTWARE_SPI
       #define FORCE_SOFT_SPI
 
       #define LCD_RESET_PIN          EXP1_05_PIN  // Must be high or open for LCD to operate normally.
